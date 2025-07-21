@@ -1,0 +1,17 @@
+image: Ubuntu
+environment:
+  JAVA_HOME: /usr/lib/jvm/java-11-openjdk-amd64
+
+build_script:
+  - sh: |
+      chmod +x ./gradlew
+      nohup java -jar artifacts/app-mbank.jar &
+      ./gradlew clean test
+
+artifacts:
+  - path: build/reports/tests/test
+    name: TestReport
+
+build:
+  verbosity: detailed
+
